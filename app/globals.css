@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+@import "tailwindcss";
+/* Fix #1: Remove overflow:hidden which breaks Lenis */
+/* html.lenis, html.lenis body {
+    height: auto !important;
+    overflow-x: hidden; 
+    overflow-y: initial; 
+} */
+
+/* Fix #2: Optional utility to hide the browser's native scrollbar */
+/* .scrollbar-hide {
+    
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+    
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+} */
+
+@theme {
+  /* 🎨 Fonts */
+  --font-sans: "Inter", sans-serif;
+
+  /* 🖥️ Breakpoints */
+  --breakpoint-3xl: 120rem;
+
+  /* 🌈 Colors */
+  --color-bg-dark: #000000;
+  --color-bg-elevated: #0d0d0d;
+  --color-border-subtle: #1a1a1a;
+  --color-lime-electric: #00ff80;
+  --color-text-primary: #ffffff;
+
+  /* 💡 Shadows */
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-cta-glow: 0 0 20px rgba(0, 255, 128, 0.4);
+  --shadow-cta-hover: 0 0 35px rgba(0, 255, 128, 0.9);
+
+  /* 🌌 Background Gradients */
+  --bg-texture-radial: radial-gradient(
+    circle at center,
+    #0a0a0a 0%,
+    #000000 100%
+  );
+
+  /* ⏱️ Transitions */
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* =========================================================
+   🧱 BASE STYLES
+   ========================================================= */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-primary);
+    overflow-x: hidden;
+  }
+}
+
+/* =========================================================
+   🧩 UTILITIES
+   ========================================================= */
+@layer utilities {
+  /* Fix #1: Prevent Lenis scroll issues */
+  html.lenis,
+  html.lenis body {
+    height: auto !important;
+    overflow-x: hidden;
+    overflow-y: initial;
+  }
+
+  /* Fix #2: Hide scrollbar if needed */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* =========================================================
+   🎨 CUSTOM DESIGN UTILITIES (kept outside Tailwind layers)
+   ========================================================= */
+
+/* ✅ Electric Lime Utilities */
+.text-lime-electric {
+  color: #00ff80;
+}
+.bg-lime-electric {
+  background-color: #00ff80;
+}
+.border-lime-electric {
+  border-color: #00ff80;
+}
+
+/* ✅ Variants (optional) */
+.border-lime-electric-50 {
+  border-color: rgba(0, 255, 128, 0.5);
+}
+
+/* ✅ General Backgrounds & Borders */
+.texture-bg {
+  background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
+}
+.bg-elevated {
+  background-color: #0d0d0d;
+}
+.border-subtle {
+  border-color: #1a1a1a;
+}
+
+/* =========================================================
+   🪩 COMPONENT-LIKE STYLES
+   ========================================================= */
+
+/* ✅ Card base style */
+.card {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+/* ✅ Call-to-action buttons */
+.cta-button {
+  border: 2px solid var(--color-lime-electric);
+  color: var(--color-lime-electric);
+  box-shadow: var(--shadow-cta-glow);
+  transition: all 0.3s ease;
+}
+.cta-button:hover {
+  background-color: var(--color-lime-electric);
+  color: #000000;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-cta-hover);
+}
+
+/* ✅ Buttons */
+.btn-primary {
+  border: 2px solid var(--color-lime-electric);
+  color: var(--color-bg-dark);
+  box-shadow: var(--shadow-cta-glow);
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: var(--color-lime-electric);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-cta-hover);
+}
+
+.btn-secondary {
+  border: 2px solid var(--color-text-primary);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-cta-glow);
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  background-color: var(--color-lime-electric);
+  border: 2px solid var(--color-text-primary);
+  color: var(--color-bg-dark);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-cta-hover);
+}
+
+/* ✅ Phase Cards */
+.protocol-phase-card {
+  background-color: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-radius: 0.75rem; /* rounded-xl */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.protocol-phase-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 255, 128, 0.3);
+  border-color: rgba(0, 255, 128, 0.5);
+}
+
+/* ✅ Performance Cards */
+.performance-card {
+  background-color: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-top: 4px solid #1a1a1a;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.performance-card:hover {
+  transform: translateY(-6px); /* Noticeable lift */
+  box-shadow: 0 25px 50px rgba(0, 255, 128, 0.15); /* Subtle electric glow shadow */
+  border-color: rgba(0, 255, 128, 0.5); /* Highlight border on hover */
+}
+
+.inactive-comparison-card {
+  background-color: #0d0d0d;
+  border: 1px solid rgb(239 68 68 / 0.5);
+  border-top: 4px solid rgb(239 68 68 / 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.inactive-comparison-card:hover {
+  transform: translateY(-6px); /* Noticeable lift */
+  box-shadow: 0 25px 50px rgb(239 68 68 / 0.5); /* Subtle electric glow shadow */
+  border-color: rgb(239 68 68 / 0.5); /* Highlight border on hover */
+}
+
+.case-study-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #1a1a1a;
+}
+.case-study-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 255, 128, 0.3);
+}
+
+/* Article Card Specifics */
+.article-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(0, 255, 128, 0.15);
+  border-color: rgba(0, 255, 128, 0.5);
+}
+
+.article-card:hover .article-title {
+  color: #00ff80;
+  transition: color 0.3s ease;
+}
+
+.apply-button {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.4);
+  border: 2px solid #00ff80;
+}
+.apply-button:hover {
+  background-color: #00ff80;
+  color: #000000;
+  transform: translateY(-3px) scale(1.01); /* Enhanced lift and slight scale */
+  box-shadow: 0 0 35px rgba(0, 255, 128, 0.9); /* Stronger glow */
+}
